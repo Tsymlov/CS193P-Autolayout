@@ -1,0 +1,18 @@
+/* No comment provided by engineer. */
+"Invalid user name or password" = "Неправильное имя пользователя или пароль";
+
+/* Bla bla bla */
+"Last Login %@ days ago at %@" = "Последний вход был %1@ дней назад в %2@";
+
+/* No comment provided by engineer. */
+"Login Error" = "Ошибка входа";
+
+/* Promt for the user's password when it is not secure (i.e. plain text) */
+"Password" = "Пароль";
+
+/* No comment provided by engineer. */
+"Secured Password" = "Защищённый пароль";
+
+/* No comment provided by engineer. */
+"Try Again" = "Попробовать еще раз";
+

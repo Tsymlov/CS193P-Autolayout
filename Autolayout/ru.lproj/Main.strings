@@ -1,0 +1,21 @@
+/* Class = "UIButton"; normalTitle = "Change Security"; ObjectID = "6rZ-Cr-y31"; */
+"6rZ-Cr-y31.normalTitle" = "Изменить режим безопасности";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "EUZ-J8-VcE"; */
+"EUZ-J8-VcE.text" = "Name";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "PQp-KQ-1M1"; */
+"PQp-KQ-1M1.normalTitle" = "Войти";
+
+/* Class = "UILabel"; text = "Last Login"; ObjectID = "TWK-st-1XK"; */
+"TWK-st-1XK.text" = "Последний вход";
+
+/* Class = "UILabel"; text = "Company"; ObjectID = "Ubo-hK-hjZ"; */
+"Ubo-hK-hjZ.text" = "";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "bLM-yX-NdR"; */
+"bLM-yX-NdR.text" = "Пароль";
+
+/* Class = "UILabel"; text = "Username"; ObjectID = "tll-dp-jLs"; */
+"tll-dp-jLs.text" = "Имя пользователя";
+

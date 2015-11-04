@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var companyLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var lastLoginLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,18 +28,47 @@ class ViewController: UIViewController {
     
     private func updateUI(){
         passwordField.secureTextEntry = secure
-        passwordLabel.text = secure ? "Secured Password" : "Password"
+        let password = NSLocalizedString("Password", comment: "Promt for the user's password when it is not secure (i.e. plain text)")
+        let securedPassword = NSLocalizedString("Secured Password", comment: "")
+        passwordLabel.text = secure ? securedPassword : password
         nameLabel.text = loggedInUser?.name
         nameLabel.text = loggedInUser?.company
         image = loggedInUser?.image
+        if let lastLogin = loggedInUser?.lastLogin {
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+            let time = dateFormatter.stringFromDate(lastLogin)
+            
+            let numberFormatter = NSNumberFormatter()
+            numberFormatter.maximumFractionDigits = 1
+            let daysAgo = numberFormatter.stringFromNumber(-lastLogin.timeIntervalSinceNow/(60*60*24))!
+            
+            let lastLoginFormatString = NSLocalizedString("Last Login %@ days ago at %@", comment: "Bla bla bla")
+            lastLoginLabel?.text = String.localizedStringWithFormat(lastLoginFormatString, daysAgo, time)
+        }else{
+            lastLoginLabel?.text = ""
+        }
     }
     
     @IBAction func toggleSecurity() {
         secure = !secure
     }
     
+    private struct AlertStrings {
+        struct LoginError {
+            static let Title = NSLocalizedString("Login Error", comment: "")
+            static let Message = NSLocalizedString("Invalid user name or password", comment: "")
+            static let DismissButton = NSLocalizedString("Try Again", comment: "")
+        }
+    }
+    
     @IBAction func login() {
         loggedInUser = User.login(loginField.text ?? "", password: passwordField.text ?? "")
+        if loggedInUser == nil {
+            let alert = UIAlertController(title: AlertStrings.LoginError.Title, message: AlertStrings.LoginError.Message, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: AlertStrings.LoginError.DismissButton, style: UIAlertActionStyle.Default, handler: nil))
+            presentViewController(alert, animated: true, completion: nil)
+        }
     }
     
     var image: UIImage? {

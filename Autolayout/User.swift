@@ -14,10 +14,12 @@ struct User
     let company: String
     let login: String
     let password: String
+    var lastLogin: NSDate?
     
     static func login(login: String, password: String) -> User? {
-        if let user = database[login] {
+        if var user = database[login] {
             if user.password == password {
+                user.lastLogin = NSDate()
                 return user
             }
         }
@@ -27,10 +29,10 @@ struct User
      static let database: Dictionary<String, User> = {
         var theDatabase = Dictionary<String, User>()
         for user in [
-            User(name: "John Appleseed", company: "Apple", login: "japple", password: "foo"),
-            User(name: "Madison Bumgarner", company: "World Champion San Francisco Giants", login: "madbum", password: "foo"),
-            User(name: "John Hennessy", company: "Stanford", login: "hennessy", password: "foo"),
-            User(name: "Bad Guy", company: "Criminals, Inc.", login: "baddie", password: "foo")
+            User(name: "John Appleseed", company: "Apple", login: "japple", password: "foo", lastLogin: nil),
+            User(name: "Madison Bumgarner", company: "World Champion San Francisco Giants", login: "madbum", password: "foo", lastLogin: nil),
+            User(name: "John Hennessy", company: "Stanford", login: "hennessy", password: "foo", lastLogin: nil),
+            User(name: "Bad Guy", company: "Criminals, Inc.", login: "baddie", password: "foo", lastLogin: nil)
         ] {
             theDatabase[user.login] = user
         }
